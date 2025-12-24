@@ -1,0 +1,33 @@
+.categories-scroll {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 16px;
+    gap: 8px;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.premium-input {
+    --background: var(--ion-card-background);
+    --border-radius: 8px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+}
+
+ion-card {
+    margin: 0;
+}

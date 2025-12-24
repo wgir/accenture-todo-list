@@ -1,0 +1,74 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-capitalize">My Tasks</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="setOpen(true)">
+        <ion-icon name="add" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <div class="categories-scroll">
+    <ion-chip [color]="selectedCategory === null ? 'primary' : 'medium'" (click)="selectedCategory = null">
+      <ion-label>All</ion-label>
+    </ion-chip>
+    <ion-chip *ngFor="let cat of categories$ | async" 
+              [style.--background]="selectedCategory === cat.id ? cat.color : ''"
+              [style.color]="selectedCategory === cat.id ? '#fff' : ''"
+              (click)="selectedCategory = cat.id">
+      <ion-label>{{ cat.name }}</ion-label>
+    </ion-chip>
+  </div>
+
+  <div class="tasks-list">
+    <ng-container *ngFor="let task of tasks$ | async">
+      <ion-card class="premium-card fade-in-item" *ngIf="!selectedCategory || task.categoryId === selectedCategory">
+        <ion-item lines="none" color="none">
+          <ion-checkbox slot="start" [checked]="task.isCompleted" (ionChange)="toggleComplete(task.id)"></ion-checkbox>
+          <ion-label [class.completed]="task.isCompleted">
+            <h2>{{ task.title }}</h2>
+          </ion-label>
+          <ion-button fill="clear" color="danger" slot="end" (click)="deleteTask(task.id)">
+            <ion-icon name="trash" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-card>
+    </ng-container>
+  </div>
+
+  <ion-modal [isOpen]="isModalOpen" (didDismiss)="setOpen(false)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>New Task</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item class="premium-input">
+          <ion-label position="stacked">Task Title</ion-label>
+          <ion-input [(ngModel)]="newTaskTitle" placeholder="Enter task name"></ion-input>
+        </ion-item>
+        
+        <ion-item class="premium-input">
+          <ion-label position="stacked">Category</ion-label>
+          <ion-select [(ngModel)]="newTaskCategory" placeholder="Select Category">
+            <ion-select-option *ngFor="let cat of categories$ | async" [value]="cat.id">
+              {{ cat.name }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-button expand="block" class="ion-margin-top" (click)="addTask()">
+          Create Task
+        </ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

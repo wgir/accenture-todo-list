@@ -1,0 +1,1 @@
+You are a senior developer expert in Cross-Platform Mobile Development, add to current app the features related in Requirements.md  and design arquitecture based on Rules.md

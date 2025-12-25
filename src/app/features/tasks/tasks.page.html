@@ -10,15 +10,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  
+
   <div class="categories-scroll">
     <ion-chip [color]="selectedCategory === null ? 'primary' : 'medium'" (click)="selectedCategory = null">
       <ion-label>All</ion-label>
     </ion-chip>
-    <ion-chip *ngFor="let cat of categories$ | async" 
-              [style.--background]="selectedCategory === cat.id ? cat.color : ''"
-              [style.color]="selectedCategory === cat.id ? '#fff' : ''"
-              (click)="selectedCategory = cat.id">
+    <ion-chip *ngFor="let cat of categories$ | async"
+      [style.--background]="selectedCategory === cat.id ? cat.color : ''"
+      [style.color]="selectedCategory === cat.id ? '#fff' : ''" (click)="selectedCategory = cat.id">
       <ion-label>{{ cat.name }}</ion-label>
     </ion-chip>
   </div>
@@ -50,14 +49,14 @@
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-        <ion-item class="premium-input">
-          <ion-label position="stacked">Task Title</ion-label>
-          <ion-input [(ngModel)]="newTaskTitle" placeholder="Enter task name"></ion-input>
+        <ion-item class="premium-input" lines="none">
+          <ion-input label="Task Title" label-placement="stacked" [(ngModel)]="newTaskTitle"
+            placeholder="Enter task name"></ion-input>
         </ion-item>
-        
-        <ion-item class="premium-input">
-          <ion-label position="stacked">Category</ion-label>
-          <ion-select [(ngModel)]="newTaskCategory" placeholder="Select Category">
+
+        <ion-item class="premium-input" lines="none">
+          <ion-select label="Category" label-placement="stacked" [(ngModel)]="newTaskCategory"
+            placeholder="Select Category">
             <ion-select-option *ngFor="let cat of categories$ | async" [value]="cat.id">
               {{ cat.name }}
             </ion-select-option>

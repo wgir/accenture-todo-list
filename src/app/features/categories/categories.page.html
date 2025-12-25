@@ -38,14 +38,13 @@
                 </ion-toolbar>
             </ion-header>
             <ion-content class="ion-padding">
-                <ion-item class="premium-input">
-                    <ion-label position="stacked">Category Name</ion-label>
-                    <ion-input [(ngModel)]="catName" placeholder="e.g. Work"></ion-input>
+                <ion-item class="premium-input" lines="none">
+                    <ion-input label="Category Name" label-placement="stacked" [(ngModel)]="catName"
+                        placeholder="e.g. Work"></ion-input>
                 </ion-item>
 
-                <ion-item class="premium-input">
-                    <ion-label position="stacked">Color</ion-label>
-                    <ion-input type="color" [(ngModel)]="catColor"></ion-input>
+                <ion-item class="premium-input" lines="none">
+                    <ion-input label="Color" label-placement="stacked" type="color" [(ngModel)]="catColor"></ion-input>
                 </ion-item>
 
                 <ion-button expand="block" class="ion-margin-top" (click)="saveCategory()">

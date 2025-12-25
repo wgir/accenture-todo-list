@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonModal } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from '../../core/services/category.service';
 import { Category } from '../../core/models/category.model';
@@ -12,7 +12,11 @@ import { trash, add, close, create, pencil } from 'ionicons/icons';
     templateUrl: './categories.page.html',
     styleUrls: ['./categories.page.scss'],
     standalone: true,
-    imports: [CommonModule, IonicModule, FormsModule]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonModal
+    ]
 })
 export class CategoriesPage {
     categories$ = this.categoryService.categories$;

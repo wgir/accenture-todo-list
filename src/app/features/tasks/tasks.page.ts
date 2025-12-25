@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonIcon, IonChip, IonLabel, IonCard, IonItem, IonCheckbox, IonModal, IonInput, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { checkmarkCircle, trash, add, create, close } from 'ionicons/icons';
 import { TaskService } from '../../core/services/task.service';
@@ -14,7 +14,12 @@ import { FormsModule } from '@angular/forms';
     templateUrl: './tasks.page.html',
     styleUrls: ['./tasks.page.scss'],
     standalone: true,
-    imports: [CommonModule, IonicModule, FormsModule]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonIcon,
+        IonChip, IonLabel, IonCard, IonItem, IonCheckbox, IonModal, IonInput, IonSelect, IonSelectOption
+    ]
 })
 export class TasksPage {
     tasks$ = this.taskService.tasks$;

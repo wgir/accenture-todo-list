@@ -91,7 +91,7 @@ The most big challenge was integrate Firebase and Remote Config to the app. I ne
 ## Performance best practices
 
 1. **Lazy Loading**: Applying lazy loading to the pages. This is implemented in your routing configuration using the modern Angular standalone component pattern.
-2. **TrackBy in *ngFor**: Prevents full DOM re-creation.
+2. **TrackBy in *ngFor***: Prevents full DOM re-creation.
 3. **Mobile-Specific Best Practices**: Test on Android Real Devices (NOT only emulator)
 
 ## Code quality

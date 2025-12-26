@@ -70,3 +70,16 @@ npm run build:android-release
 
 ## Troubleshooting
 If you encounter `Error: Unknown argument: platform`, it is because the Ionic script is trying to pass a flag to the new Angular builder that it doesn't recognize. Using the `--no-build` flag as shown above skips this step and uses the already compiled `www` folder.
+
+## Firebase and Remote Config
+
+![Firebase and Remote Config](docs/config-server.png)
+
+## Optimization
+
+1. **Lazy Loading**: Implemented lazy loading for feature modules to reduce initial bundle size.
+2. **Tree Shaking**: Utilized tree shaking to remove unused code.
+3. **Code Splitting**: Implemented code splitting to split the application into smaller chunks.
+4. **Pagination**: Implemented pagination for task list to reduce memory usage and improve performance.
+5. **Minification**: Implemented minification for CSS and JavaScript files to reduce file size.
+6. **Gzip Compression**: Implemented gzip compression for API responses to reduce network transfer size.

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonButton, IonIcon, IonChip, IonLabel, IonCard, IonItem, IonCheckbox, IonModal, IonInput, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
@@ -8,6 +8,8 @@ import { CategoryService } from '../../core/services/category.service';
 import { Task } from '../../core/models/task.model';
 import { Category } from '../../core/models/category.model';
 import { FormsModule } from '@angular/forms';
+import { FirebaseX } from '@awesome-cordova-plugins/firebase-x/ngx';
+import { Platform } from '@ionic/angular/standalone';
 
 @Component({
     selector: 'app-tasks',
@@ -21,29 +23,30 @@ import { FormsModule } from '@angular/forms';
         IonChip, IonLabel, IonCard, IonItem, IonCheckbox, IonModal, IonInput, IonSelect, IonSelectOption
     ]
 })
-export class TasksPage {
+export class TasksPage implements OnInit {
     tasks$ = this.taskService.tasks$;
     categories$ = this.categoryService.categories$;
 
     selectedCategory: string | null = null;
     isModalOpen = false;
 
+    pageTitle = 'My Tasks';
     newTaskTitle = '';
     newTaskCategory = '';
 
     constructor(
         private taskService: TaskService,
-        private categoryService: CategoryService
+        private categoryService: CategoryService,
+        private firebaseX: FirebaseX,
+        private platform: Platform
     ) {
         addIcons({ checkmarkCircle, trash, add, create, close });
     }
 
-    get filteredTasks() {
-        // This should be done properly with observables in a real app, 
-        // but getter is fine for simple use case
-        // We will implement a better pipe or subscribe usage if needed.
-        // For now, let's just iterate in the template or use a transform.
-        return null;
+    ngOnInit() {
+        this.platform.ready().then((source) => {
+            this.fetchRemoteConfig();
+        });
     }
 
     addTask() {
@@ -72,5 +75,33 @@ export class TasksPage {
 
     setOpen(isOpen: boolean) {
         this.isModalOpen = isOpen;
+    }
+
+    async fetchRemoteConfig() {
+        try {
+            if (!this.firebaseX) {
+                return;
+            }
+
+            await this.firebaseX.fetch(0);
+
+            const activated = await this.firebaseX.activateFetched();
+
+            const value = await this.firebaseX.getValue('new_title');
+
+            if (value !== undefined && value !== null && value !== '') {
+                this.pageTitle = value.toString();
+            } else {
+                console.warn('Value for "new_title" is empty or null. Check Firebase Console.');
+                // Try getAll as a fallback/debug
+                this.firebaseX.getAll((values) => {
+                    console.log('Fallback - All Config Values:', JSON.stringify(values));
+                }, (err) => {
+                    console.error('Error in getAll:', err);
+                });
+            }
+        } catch (err) {
+            console.error('CRITICAL ERROR during Remote Config:', err);
+        }
     }
 }

@@ -83,3 +83,22 @@ If you encounter `Error: Unknown argument: platform`, it is because the Ionic sc
 4. **Pagination**: Implemented pagination for task list to reduce memory usage and improve performance.
 5. **Minification**: Implemented minification for CSS and JavaScript files to reduce file size.
 6. **Gzip Compression**: Implemented gzip compression for API responses to reduce network transfer size.
+
+## Challenge
+
+The most big challenge was integrate Firebase and Remote Config to the app. I never used this before and I had to search for a lot of information to make it work. 
+
+## Performance best practices
+
+1. **Lazy Loading**: Applying lazy loading to the pages. This is implemented in your routing configuration using the modern Angular standalone component pattern.
+2. **TrackBy in *ngFor**: Prevents full DOM re-creation.
+3. **Mobile-Specific Best Practices**: Test on Android Real Devices (NOT only emulator)
+
+## Code quality
+
+1. **TypeScript**: Implemented TypeScript for type safety and better code quality.
+2. **Angular Standalone Components**: Implemented Angular Standalone Components for better code quality.
+3. **Angular Router**: Implemented Angular Router for better code quality and reduce the size of the bundle.
+4. **Automated Linting and Standardization**: Implemented Automated Linting and Standardization for better code quality.
+5. **Reactive State Management with RxJS**: Instead of manual state handling, I used RxJS BehaviorSubject and Observables in our services. Data Consistency: Using tasks$ observables ensures that any change in the data (adding, deleting, or toggling a task) is automatically reflected across all components listening to that data.
+Async Pipe: I utilized the Angular async pipe in templates (where possible) to manage subscriptions automatically, preventing memory leaks.

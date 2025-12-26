@@ -28,6 +28,11 @@ This application is a modern to-do list with category management, built using Io
    ionic serve
    ```
 
+
+## APK Generated
+
+[app-todo-debug.apk](https://github.com/wgir/accenture-todo-list/blob/main/app-todo-debug.apk)
+
 ## Compiling for Mobile (Cordova)
 
 ### Android

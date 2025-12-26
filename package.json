@@ -10,7 +10,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "build:android": "ng build && ionic cordova build android --no-build"
+    "build:android": "ng build && ionic cordova build android --no-build && copy platforms\\android\\app\\build\\outputs\\apk\\debug\\app-debug.apk app-todo-debug.apk",
+    "build:android-release": "ng build && ionic cordova build android --release --no-build -- --buildConfig=build.json && copy platforms\\android\\app\\build\\outputs\\apk\\release\\app-release-unsigned.apk app-todo-release.apk"
   },
   "private": true,
   "dependencies": {

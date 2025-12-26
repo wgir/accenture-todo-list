@@ -31,18 +31,26 @@ This application is a modern to-do list with category management, built using Io
 ## Compiling for Mobile (Cordova)
 
 ### Android
-Due to recent changes in Angular Standalone and Ionic CLI, use the following steps for a successful build:
+For a streamlined build process that avoids common CLI conflicts and automatically renames the output APKs, use the following commands:
 
-1. **Build the Web project**:
-   ```bash
-   npm run build
-   ```
+#### 1. Generate Debug APK (For Testing)
+```bash
+npm run build:android
+```
+- **Output**: `app-todo-debug.apk` (in the project root)
+- **Use case**: Quick testing on emulator or physical device.
 
-2. **Build the Android APK**:
-   ```bash
-   ionic cordova build android --no-build
-   ```
-   *Note: If environment variables like `JAVA_HOME` are not set, make sure to configure them first.*
+#### 2. Generate Release APK (For Production)
+```bash
+npm run build:android-release
+```
+- **Output**: `app-todo-release.apk` (in the project root)
+- **Use case**: Final version for testing. 
+- *Note: This APK is **unsigned**. You will need to sign it with a Keystore before installing on a physical device.*
+
+#### Manual Steps (If needed):
+1. **Build the Web project**: `npm run build`
+2. **Build the Android APK**: `ionic cordova build android --no-build`
 
 ### iOS
 1. **Build the Web project**:

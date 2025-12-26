@@ -104,3 +104,6 @@ The most big challenge was integrate Firebase and Remote Config to the app. I ne
 4. **Automated Linting and Standardization**: Implemented Automated Linting and Standardization for better code quality.
 5. **Reactive State Management with RxJS**: Instead of manual state handling, I used RxJS BehaviorSubject and Observables in our services. Data Consistency: Using tasks$ observables ensures that any change in the data (adding, deleting, or toggling a task) is automatically reflected across all components listening to that data.
 Async Pipe: I utilized the Angular async pipe in templates (where possible) to manage subscriptions automatically, preventing memory leaks.
+6. **Architecture**:  I organized the application using a clean modular structure, separating global logic from feature-specific code:
+Core Layer: Dedicated to singleton services (like TaskService and CategoryService) and global models. This ensures a "single source of truth" for the application state.
+Feature Layer: Each functionality (Tasks, Categories) is encapsulated in its own directory, making the codebase easy to navigate and scale.

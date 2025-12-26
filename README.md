@@ -66,6 +66,8 @@ npm run build:android-release
 2. **Build the iOS app**:
    ```bash
    ionic cordova build ios --no-build
+
+   Its was not posible test it, becasuse i dont have a mac but it should work.
    ```
 
 ## Troubleshooting

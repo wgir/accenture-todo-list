@@ -1,12 +1,26 @@
 .categories-scroll {
     display: flex;
-    overflow-x: auto;
-    padding-bottom: 16px;
+    flex-wrap: wrap;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 8px 4px;
     gap: 8px;
-    scrollbar-width: none;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    background: rgba(var(--ion-color-step-100-rgb), 0.1);
 
     &::-webkit-scrollbar {
-        display: none;
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--ion-color-medium);
+        border-radius: 4px;
+    }
+
+    ion-chip {
+        flex-shrink: 0;
+        margin: 0;
     }
 }
 
